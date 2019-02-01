@@ -5,6 +5,7 @@ import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { BrowserRouter } from 'react-router-dom';
 
 const httpLink = createHttpLink({ uri: '' });
 
@@ -16,9 +17,11 @@ const client = new ApolloClient({
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>,
+    <BrowserRouter>
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
+    </BrowserRouter>,
     div
   );
   ReactDOM.unmountComponentAtNode(div);
